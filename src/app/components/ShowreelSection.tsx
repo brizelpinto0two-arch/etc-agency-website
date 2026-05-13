@@ -26,6 +26,21 @@ function splitRows(arr: string[], n: number): string[][] {
 
 const [row1, row2] = splitRows(allImages, 2);
 
+// Neon circles — like the Korean poster reference
+const CIRCLES = [
+  { top: "8%",  right: "6%",  size: 52 },
+  { top: "14%", right: "14%", size: 22 },
+  { top: "5%",  left: "38%",  size: 16 },
+];
+
+// Scattered pixel squares
+const PIXELS = [
+  { top: "22%", left: "3%",  size: 10 },
+  { top: "18%", right: "3%", size: 8  },
+  { top: "70%", left: "2%",  size: 12 },
+  { top: "75%", right: "5%", size: 8  },
+];
+
 interface RowProps {
   images: string[];
   reverse?: boolean;
@@ -39,7 +54,7 @@ function CinemaRow({ images, reverse = false, duration = 80, height = 420, sizeO
   return (
     <div className="overflow-hidden w-full">
       <motion.div
-        className="flex gap-3 items-stretch"
+        className="flex gap-2 items-stretch"
         style={{ width: "max-content" }}
         animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
         transition={{ duration, repeat: Infinity, ease: "linear" }}
@@ -48,9 +63,11 @@ function CinemaRow({ images, reverse = false, duration = 80, height = 420, sizeO
           const size = sizes[(i + sizeOffset) % sizes.length];
           const w = getWidth(size);
           return (
-            <div key={i} className="relative flex-shrink-0 overflow-hidden rounded-2xl group" style={{ width: w, height }}>
+            <div key={i} className="relative flex-shrink-0 overflow-hidden group" style={{ width: w, height }}>
               <img src={src} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500 pointer-events-none" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500 pointer-events-none" />
+              {/* Pixel corner */}
+              <div className="absolute top-0 right-0 w-2 h-2 bg-[#CCFF00]" />
             </div>
           );
         })}
@@ -61,69 +78,91 @@ function CinemaRow({ images, reverse = false, duration = 80, height = 420, sizeO
 
 export function ShowreelSection() {
   return (
-    <section
-      className="relative w-full overflow-hidden"
-      style={{ background: "linear-gradient(160deg, #e8d8ff 0%, #c4a8e8 25%, #7040a8 55%, #3d1f65 80%, #2a1550 100%)" }}
-    >
-      {/* Header */}
-      <div className="relative z-20 px-8 md:px-16 lg:px-20 pt-28 pb-12 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5 }}
-          className="flex items-center gap-3 mb-8"
-        >
-          <div className="w-1.5 h-1.5 rounded-full bg-[#CCFF00]" style={{ boxShadow: "0 0 6px #CCFF00" }} />
-          <span className="text-white/50 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>ETC. ARCHIVE — FULL CATALOGUE</span>
-        </motion.div>
+    <section className="relative w-full bg-[#050505] overflow-hidden">
 
-        <div className="flex items-end justify-between gap-6 flex-wrap">
-          <motion.h2
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="text-white leading-[0.85]"
-            style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(4.5rem, 11vw, 9rem)", fontWeight: 800, letterSpacing: "-0.02em" }}
-          >
-            Show
-            <br />
-            <span className="italic">Reel</span>
-          </motion.h2>
+      {/* Fine grid overlay — like the Korean poster */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.06]"
+        style={{
+          backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            className="hidden md:flex flex-col items-end gap-1 pb-3"
-          >
-            <p className="text-white/25 text-[0.6rem] tracking-[0.2em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{allImages.length} PIECES</p>
-            <p className="text-white/20 text-[0.55rem] tracking-[0.2em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>BRAND / SOCIAL / PRINT / MOTION</p>
-            <p className="text-white/15 text-[0.55rem] tracking-[0.2em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>BANGALORE, IN — 2025</p>
-          </motion.div>
+      {/* Neon green circles */}
+      {CIRCLES.map((c, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full bg-[#CCFF00] pointer-events-none z-10"
+          style={{ top: c.top, ...(c.right ? { right: c.right } : { left: c.left }), width: c.size, height: c.size }}
+        />
+      ))}
+
+      {/* Pixel squares */}
+      {PIXELS.map((p, i) => (
+        <div
+          key={i}
+          className="absolute bg-[#CCFF00] pointer-events-none z-10 opacity-70"
+          style={{ top: p.top, ...(p.right ? { right: p.right } : { left: p.left }), width: p.size, height: p.size }}
+        />
+      ))}
+
+      {/* ── HEADER ── */}
+      <div className="relative z-20 px-8 md:px-16 lg:px-20 pt-24 pb-10 max-w-7xl mx-auto">
+
+        {/* Dashed top rule */}
+        <div className="flex items-center gap-3 mb-10">
+          <div className="w-2 h-2 bg-[#CCFF00]" />
+          <div className="flex-1 border-t border-dashed border-white/20" />
+          <p className="text-white/40 text-[0.55rem] tracking-[0.3em]" style={{ fontFamily: "'Space Mono', monospace" }}>ETC. ARCHIVE</p>
+          <div className="flex-1 border-t border-dashed border-white/20" />
+          <div className="w-2 h-2 bg-[#CCFF00]" />
         </div>
+
+        <div className="flex items-end justify-between gap-6 flex-wrap mb-2">
+          <div>
+            <p className="text-[#CCFF00] text-[0.6rem] tracking-[0.3em] mb-2" style={{ fontFamily: "'Space Mono', monospace" }}>
+              — 03 / SHOWREEL
+            </p>
+            <h2
+              className="text-white leading-none"
+              style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(5rem, 14vw, 11rem)", letterSpacing: "0.02em" }}
+            >
+              FULL
+              <br />
+              ARCHIVE.
+            </h2>
+          </div>
+
+          <div className="pb-4 hidden md:block">
+            <p className="text-white/20 text-[0.55rem] tracking-[0.2em] leading-relaxed text-right" style={{ fontFamily: "'Space Mono', monospace" }}>
+              PLACEHOLDER — {allImages.length} WORKS<br />
+              BRAND / SOCIAL / PRINT<br />
+              MOTION / PACKAGING
+            </p>
+          </div>
+        </div>
+
+        {/* Dashed separator */}
+        <div className="border-t border-dashed border-white/15 mb-8" />
       </div>
 
-      {/* Rows */}
-      <div className="relative z-20 space-y-3 pb-3">
-        <CinemaRow images={row1} reverse={false} duration={100} height={440} sizeOffset={0} />
-        <CinemaRow images={row2} reverse={true}  duration={120} height={380} sizeOffset={3} />
+      {/* ── CINEMA ROWS ── */}
+      <div className="relative z-20 space-y-2 pb-2">
+        <CinemaRow images={row1} reverse={false} duration={100} height={400} sizeOffset={0} />
+        <CinemaRow images={row2} reverse={true}  duration={120} height={340} sizeOffset={3} />
       </div>
-
-      {/* Vignettes that match the gradient endpoints */}
-      <div className="absolute inset-x-0 top-0 h-24 pointer-events-none z-30" style={{ background: "linear-gradient(to bottom, #e8d8ff, transparent)" }} />
-      <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-30" style={{ background: "linear-gradient(to top, #2a1550, transparent)" }} />
 
       {/* Footer */}
-      <div className="relative z-20 px-8 md:px-16 lg:px-20 pb-20 pt-10 max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap">
-        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 0.25 }} viewport={{ once: true }} className="text-white/25 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-          ETCETERA — EVERYTHING WE'VE MADE. AND MORE.
-        </motion.p>
-        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 0.2 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-white/20 text-[0.55rem] tracking-[0.2em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-          WE CAN'T LIST IT ALL — ETC.™
-        </motion.p>
+      <div className="relative z-20 px-8 md:px-16 lg:px-20 py-10 max-w-7xl mx-auto">
+        {/* Dashed rule */}
+        <div className="flex items-center gap-3 mt-4">
+          <div className="flex-1 border-t border-dashed border-white/15" />
+          <p className="text-white/25 text-[0.55rem] tracking-[0.3em]" style={{ fontFamily: "'Space Mono', monospace" }}>
+            ETCETERA — EVERYTHING WE'VE MADE. AND MORE. — WE CAN'T LIST IT ALL
+          </p>
+          <div className="flex-1 border-t border-dashed border-white/15" />
+        </div>
       </div>
     </section>
   );
