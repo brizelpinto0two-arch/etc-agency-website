@@ -1,72 +1,76 @@
 import { motion } from "motion/react";
-import { gradOrangeBlue, gradPinkNavy, gradDarkCopper, grain } from "./brandGradients";
+import { grain } from "./brandGradients";
 
-// All images — dynamic import keeps bundle lean
 const raw = import.meta.glob("../../imports/etc-work/img-*.jpg", { eager: true }) as Record<string, { default: string }>;
 
 const allImages: string[] = Object.entries(raw)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, mod]) => mod.default)
-  .slice(1); // skip img-000 (used as bg)
+  .slice(1); // skip img-000
+
+// Distribute images across rows and assign a width class to each card
+type CardSize = "wide" | "portrait" | "square" | "hero";
+
+const sizes: CardSize[] = ["wide", "square", "hero", "portrait", "square", "wide", "portrait", "hero", "square", "wide"];
+
+function getWidth(size: CardSize): number {
+  switch (size) {
+    case "hero":     return 520;
+    case "wide":     return 400;
+    case "square":   return 320;
+    case "portrait": return 260;
+  }
+}
 
 function splitRows(arr: string[], n: number): string[][] {
   const size = Math.ceil(arr.length / n);
   return Array.from({ length: n }, (_, i) => arr.slice(i * size, (i + 1) * size));
 }
 
-const [row1, row2, row3] = splitRows(allImages, 3);
-
-// Card bg cycles through CSS brand gradients
-const bgGrads = [gradOrangeBlue, gradPinkNavy, gradDarkCopper];
+const [row1, row2] = splitRows(allImages, 2);
 
 interface RowProps {
   images: string[];
   reverse?: boolean;
   duration?: number;
   height?: number;
-  bgOffset?: number;
+  sizeOffset?: number;
 }
 
-function MarqueeRow({ images, reverse = false, duration = 90, height = 240, bgOffset = 0 }: RowProps) {
+function CinemaRow({ images, reverse = false, duration = 80, height = 420, sizeOffset = 0 }: RowProps) {
   const doubled = [...images, ...images];
 
   return (
     <div className="overflow-hidden w-full">
       <motion.div
-        className="flex gap-3"
+        className="flex gap-3 items-stretch"
         style={{ width: "max-content" }}
         animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
         transition={{ duration, repeat: Infinity, ease: "linear" }}
       >
         {doubled.map((src, i) => {
-          const bgGrad = bgGrads[(i + bgOffset) % bgGrads.length];
+          const size = sizes[(i + sizeOffset) % sizes.length];
+          const w = getWidth(size);
           return (
             <div
               key={i}
-              className="relative flex-shrink-0 overflow-hidden rounded-xl group"
-              style={{ width: height, height }}
+              className="relative flex-shrink-0 overflow-hidden rounded-2xl group"
+              style={{ width: w, height }}
             >
-              {/* CSS brand gradient bg — instant, no download */}
-              <div className="absolute inset-0 opacity-50" style={{ background: bgGrad }} />
-              {/* Blurred atmosphere layer */}
+              {/* Full-bleed cover image */}
               <img
                 src={src}
                 alt=""
                 loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{ opacity: 0.25, filter: "blur(20px) saturate(0.7)" }}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              {/* Sharp contained work image */}
-              <img
-                src={src}
-                alt=""
-                className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105"
-                style={{ objectFit: "contain", padding: "8px" }}
-                loading="lazy"
-              />
+
+              {/* Subtle vignette on hover */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500 pointer-events-none" />
+
               {/* Grain overlay */}
               <div
-                className="absolute inset-0 mix-blend-overlay opacity-25 pointer-events-none"
+                className="absolute inset-0 mix-blend-overlay opacity-20 pointer-events-none"
                 style={{ backgroundImage: grain }}
               />
             </div>
@@ -82,21 +86,18 @@ export function ShowreelSection() {
     <section className="relative w-full bg-[#030303] border-t border-white/5 overflow-hidden">
 
       {/* Global grain */}
-      <div className="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none z-10" style={{ backgroundImage: grain }} />
-
-      {/* Pink-navy gradient tint — CSS, instant */}
-      <div className="absolute inset-0 opacity-8 pointer-events-none" style={{ background: gradPinkNavy }} />
+      <div className="absolute inset-0 opacity-35 mix-blend-overlay pointer-events-none z-10" style={{ backgroundImage: grain }} />
 
       {/* Bloom */}
       <motion.div
-        className="absolute w-[900px] h-[900px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(64,64,255,0.08) 0%, transparent 70%)", filter: "blur(130px)", left: "15%", top: "10%" }}
-        animate={{ opacity: [0.08, 0.14, 0.08], scale: [1, 1.1, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute w-[1000px] h-[1000px] pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(64,64,255,0.07) 0%, transparent 70%)", filter: "blur(150px)", left: "20%", top: "5%" }}
+        animate={{ opacity: [0.07, 0.13, 0.07], scale: [1, 1.1, 1] }}
+        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* ── HEADER ── */}
-      <div className="relative z-20 px-8 md:px-16 lg:px-20 pt-28 pb-14 max-w-7xl mx-auto">
+      <div className="relative z-20 px-8 md:px-16 lg:px-20 pt-28 pb-12 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 0.5 }}
@@ -138,11 +139,10 @@ export function ShowreelSection() {
         </div>
       </div>
 
-      {/* ── FILM STRIPS — 3 rows, alternating direction ── */}
+      {/* ── CINEMA ROWS — 2 rows, cinematic heights ── */}
       <div className="relative z-20 space-y-3 pb-3">
-        <MarqueeRow images={row1} reverse={false} duration={90}  height={250} bgOffset={0} />
-        <MarqueeRow images={row2} reverse={true}  duration={110} height={250} bgOffset={1} />
-        <MarqueeRow images={row3} reverse={false} duration={100} height={250} bgOffset={2} />
+        <CinemaRow images={row1} reverse={false} duration={100} height={440} sizeOffset={0} />
+        <CinemaRow images={row2} reverse={true}  duration={120} height={380} sizeOffset={3} />
       </div>
 
       {/* Top + bottom vignette */}
