@@ -13,7 +13,7 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="relative min-h-screen w-full bg-[#F8EFD2] py-32 px-8 md:px-16 lg:px-20 border-t border-[#4F4169]/10">
+    <section className="relative min-h-screen w-full bg-[#F9F8F5] py-32 px-8 md:px-16 lg:px-20 border-t border-[#4F4169]/10">
 
       <div className="relative z-10 max-w-5xl">
 
@@ -33,12 +33,12 @@ export function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5 }}
-          className="text-[#4F4169] leading-[0.85] tracking-tighter mb-16"
-          style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(3rem, 7vw, 5.5rem)", fontWeight: 700, letterSpacing: "-0.03em" }}
+          className="text-[#4F4169] leading-[0.9] mb-16"
+          style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(3rem, 7vw, 5.5rem)", fontWeight: 800, letterSpacing: "-0.02em" }}
         >
           We make people feel
           <br />
-          something when they see you.
+          <span className="italic">something</span> when they see you.
         </motion.h2>
 
         <div className="divide-y divide-[#4F4169]/12">
@@ -55,7 +55,7 @@ export function ServicesSection() {
               <div className="flex-1 flex items-baseline justify-between gap-12">
                 <h3
                   className="text-[#4F4169]/75 group-hover:text-[#4F4169] transition-colors duration-300 flex-shrink-0"
-                  style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.1rem, 2vw, 1.5rem)", fontWeight: 600, letterSpacing: "-0.01em" }}
+                  style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.1rem, 2vw, 1.5rem)", fontWeight: 600 }}
                 >
                   {s.name}
                 </h3>
@@ -63,7 +63,7 @@ export function ServicesSection() {
                   {s.desc}
                 </p>
               </div>
-              <div className="w-1.5 h-1.5 rounded-full bg-[#C1D736] flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              <div className="w-1.5 h-1.5 rounded-full bg-[#CCFF00] flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200" style={{ boxShadow: "0 0 6px #CCFF00" }} />
             </motion.div>
           ))}
         </div>

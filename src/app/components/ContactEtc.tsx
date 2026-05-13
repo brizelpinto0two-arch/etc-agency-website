@@ -15,7 +15,7 @@ export function ContactEtc() {
           transition={{ duration: 2 }}
           className="flex items-center gap-3 mb-8"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-[#C1D736]" />
+          <div className="w-1.5 h-1.5 rounded-full bg-[#CCFF00]" style={{ boxShadow: "0 0 6px #CCFF00" }} />
           <span className="text-white/50 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>LET'S TALK</span>
         </motion.div>
 
@@ -24,12 +24,12 @@ export function ContactEtc() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.1, delay: 0.2 }}
-          className="text-[#F8EFD2] leading-[0.88] mb-12"
-          style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(3.5rem, 10vw, 8rem)", fontWeight: 700, letterSpacing: "-0.03em" }}
+          className="text-[#F9F8F5] leading-[0.88] mb-12"
+          style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(3.5rem, 10vw, 8rem)", fontWeight: 800, letterSpacing: "-0.02em" }}
         >
           <TextReveal text="Less small talk." delay={0.3} />
           <br />
-          <span className="text-[#C1D736]"><TextReveal text="More big thoughts." delay={0.7} /></span>
+          <span className="text-[#CCFF00] italic"><TextReveal text="More big thoughts." delay={0.7} /></span>
         </motion.h2>
 
         <motion.p
@@ -37,7 +37,7 @@ export function ContactEtc() {
           whileInView={{ opacity: 0.55 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="text-[#F8EFD2] leading-relaxed max-w-sm mb-16"
+          className="text-[#F9F8F5] leading-relaxed max-w-sm mb-16"
           style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.9rem, 1.3vw, 1.1rem)", fontWeight: 300 }}
         >
           We'll keep it simple. We'd love to create something wild and crazy with you.
@@ -51,8 +51,8 @@ export function ContactEtc() {
           className="flex flex-col sm:flex-row gap-4"
         >
           <MagneticButton as="a" href="mailto:Ecetera@etc.designlabs.com">
-            <div className="group flex items-center gap-4 px-6 py-4 border border-white/20 hover:border-[#C1D736]/60 rounded-full transition-all duration-300 cursor-pointer">
-              <span className="text-white/40 text-[0.55rem] tracking-[0.2em] uppercase group-hover:text-[#C1D736]/70 transition-colors" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>EMAIL</span>
+            <div className="group flex items-center gap-4 px-6 py-4 border border-white/20 hover:border-[#CCFF00]/60 rounded-full transition-all duration-300 cursor-pointer">
+              <span className="text-white/40 text-[0.55rem] tracking-[0.2em] uppercase group-hover:text-[#CCFF00]/70 transition-colors" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>EMAIL</span>
               <span className="text-white/75 text-xs tracking-wide" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Ecetera@etc.designlabs.com</span>
             </div>
           </MagneticButton>
@@ -66,7 +66,6 @@ export function ContactEtc() {
         </motion.div>
       </div>
 
-      {/* Footer wordmark */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -75,8 +74,8 @@ export function ContactEtc() {
         className="relative z-10 mt-32 pt-8 border-t border-white/10 flex items-end justify-between flex-wrap gap-4"
       >
         <p
-          className="text-white/8 leading-none tracking-tighter"
-          style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(4rem, 12vw, 10rem)", fontWeight: 700, lineHeight: 0.85 }}
+          className="text-white/8 leading-none"
+          style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(4rem, 12vw, 10rem)", fontWeight: 800, lineHeight: 0.85 }}
         >
           etc.™
         </p>

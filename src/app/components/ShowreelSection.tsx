@@ -5,10 +5,9 @@ const raw = import.meta.glob("../../imports/etc-work/img-*.jpg", { eager: true }
 const allImages: string[] = Object.entries(raw)
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, mod]) => mod.default)
-  .slice(1); // skip img-000
+  .slice(1);
 
 type CardSize = "wide" | "portrait" | "square" | "hero";
-
 const sizes: CardSize[] = ["wide", "square", "hero", "portrait", "square", "wide", "portrait", "hero", "square", "wide"];
 
 function getWidth(size: CardSize): number {
@@ -37,7 +36,6 @@ interface RowProps {
 
 function CinemaRow({ images, reverse = false, duration = 80, height = 420, sizeOffset = 0 }: RowProps) {
   const doubled = [...images, ...images];
-
   return (
     <div className="overflow-hidden w-full">
       <motion.div
@@ -50,17 +48,8 @@ function CinemaRow({ images, reverse = false, duration = 80, height = 420, sizeO
           const size = sizes[(i + sizeOffset) % sizes.length];
           const w = getWidth(size);
           return (
-            <div
-              key={i}
-              className="relative flex-shrink-0 overflow-hidden rounded-2xl group"
-              style={{ width: w, height }}
-            >
-              <img
-                src={src}
-                alt=""
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+            <div key={i} className="relative flex-shrink-0 overflow-hidden rounded-2xl group" style={{ width: w, height }}>
+              <img src={src} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500 pointer-events-none" />
             </div>
           );
@@ -74,7 +63,6 @@ export function ShowreelSection() {
   return (
     <section className="relative w-full bg-[#4F4169] border-t border-white/5 overflow-hidden">
 
-      {/* ── HEADER ── */}
       <div className="relative z-20 px-8 md:px-16 lg:px-20 pt-28 pb-12 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
@@ -83,10 +71,8 @@ export function ShowreelSection() {
           transition={{ duration: 2 }}
           className="flex items-center gap-3 mb-8"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-[#C1D736]" />
-          <span className="text-white/50 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            ETC. ARCHIVE — FULL CATALOGUE
-          </span>
+          <div className="w-1.5 h-1.5 rounded-full bg-[#CCFF00]" style={{ boxShadow: "0 0 6px #CCFF00" }} />
+          <span className="text-white/50 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>ETC. ARCHIVE — FULL CATALOGUE</span>
         </motion.div>
 
         <div className="flex items-end justify-between gap-6 flex-wrap">
@@ -95,12 +81,12 @@ export function ShowreelSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="text-white leading-[0.85] tracking-tighter"
-            style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(4.5rem, 11vw, 9rem)", fontWeight: 700, letterSpacing: "-0.03em" }}
+            className="text-white leading-[0.85]"
+            style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(4.5rem, 11vw, 9rem)", fontWeight: 800, letterSpacing: "-0.02em" }}
           >
-            SHOW
+            Show
             <br />
-            REEL
+            <span className="italic">Reel</span>
           </motion.h2>
 
           <motion.div
@@ -117,35 +103,19 @@ export function ShowreelSection() {
         </div>
       </div>
 
-      {/* ── CINEMA ROWS ── */}
       <div className="relative z-20 space-y-3 pb-3">
         <CinemaRow images={row1} reverse={false} duration={100} height={440} sizeOffset={0} />
         <CinemaRow images={row2} reverse={true}  duration={120} height={380} sizeOffset={3} />
       </div>
 
-      {/* Top + bottom vignette — uses #4F4169 */}
       <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#4F4169] to-transparent z-30 pointer-events-none" />
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#4F4169] to-transparent z-30 pointer-events-none" />
 
-      {/* Footer row */}
       <div className="relative z-20 px-8 md:px-16 lg:px-20 pb-20 pt-10 max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.25 }}
-          viewport={{ once: true }}
-          className="text-white/25 text-[0.6rem] tracking-[0.25em] uppercase"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        >
+        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 0.25 }} viewport={{ once: true }} className="text-white/25 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
           ETCETERA — EVERYTHING WE'VE MADE. AND MORE.
         </motion.p>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.2 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="text-white/20 text-[0.55rem] tracking-[0.2em] uppercase"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        >
+        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 0.2 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-white/20 text-[0.55rem] tracking-[0.2em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
           WE CAN'T LIST IT ALL — ETC.™
         </motion.p>
       </div>

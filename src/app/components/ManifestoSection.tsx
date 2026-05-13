@@ -11,12 +11,12 @@ const steps = [
 
 export function ManifestoSection() {
   return (
-    <section id="about" className="relative min-h-screen w-full bg-[#F8EFD2] py-40 px-8 md:px-16 lg:px-20 border-t border-[#4F4169]/10">
+    <section id="about" className="relative min-h-screen w-full bg-[#F9F8F5] py-40 px-8 md:px-16 lg:px-20 border-t border-[#4F4169]/10">
 
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
 
-          {/* Left — story */}
+          {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -35,12 +35,12 @@ export function ManifestoSection() {
             </motion.div>
 
             <h2
-              className="text-[#4F4169] leading-[0.85] tracking-tighter mb-12"
-              style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(3rem, 7vw, 5.5rem)", fontWeight: 700, letterSpacing: "-0.03em" }}
+              className="text-[#4F4169] leading-[0.88] mb-12"
+              style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(3rem, 7vw, 5.5rem)", fontWeight: 800, letterSpacing: "-0.02em" }}
             >
-              <TextReveal text="Because we saw more than just" delay={0.2} />
+              <TextReveal text="Because we saw" delay={0.2} />
               <br />
-              <span className="text-[#3E7438]"><TextReveal text='"good enough."' delay={0.7} /></span>
+              <span className="italic text-[#3E7438]"><TextReveal text="more than enough." delay={0.7} /></span>
             </h2>
 
             <div className="space-y-8 mb-16">
@@ -67,11 +67,10 @@ export function ManifestoSection() {
               </motion.p>
             </div>
 
-            {/* Info grid — no blur */}
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: "LOCATION",   value: "BANGALORE, IN"  },
-                { label: "DISCIPLINE", value: "CREATIVE DESIGN" },
+                { label: "LOCATION",   value: "BANGALORE, IN"   },
+                { label: "DISCIPLINE", value: "CREATIVE DESIGN"  },
                 { label: "FOCUS",      value: "BRAND + STRATEGY" },
                 { label: "STATUS",     value: "ACTIVE"           },
               ].map((item, i) => (
@@ -90,7 +89,7 @@ export function ManifestoSection() {
             </div>
           </motion.div>
 
-          {/* Right — process */}
+          {/* Right */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -105,7 +104,7 @@ export function ManifestoSection() {
               transition={{ duration: 2 }}
               className="flex items-center gap-3 mb-8"
             >
-              <div className="w-1.5 h-1.5 rounded-full bg-[#C1D736]" />
+              <div className="w-1.5 h-1.5 rounded-full bg-[#CCFF00]" style={{ boxShadow: "0 0 6px #CCFF00" }} />
               <span className="text-[#4F4169]/50 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>HOW WE WORK</span>
             </motion.div>
 
@@ -121,7 +120,7 @@ export function ManifestoSection() {
                 >
                   <span
                     className="text-[#4F4169] group-hover:text-[#3E7438] transition-colors duration-300"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.2rem)", fontWeight: 700, letterSpacing: "-0.02em" }}
+                    style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.5rem, 3vw, 2.2rem)", fontWeight: 700 }}
                   >
                     {step.label}
                   </span>
@@ -130,7 +129,6 @@ export function ManifestoSection() {
               ))}
             </div>
 
-            {/* Why work with us — no blur */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

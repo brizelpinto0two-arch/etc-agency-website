@@ -17,7 +17,6 @@ export function EtcHero() {
   return (
     <section className="relative h-screen w-full overflow-hidden flex flex-col justify-between" style={{ backgroundColor: "#0a0614" }}>
 
-      {/* Full-screen background image */}
       <img
         src={heroBg}
         alt=""
@@ -25,7 +24,6 @@ export function EtcHero() {
         style={{ objectPosition: "center 40%" }}
       />
 
-      {/* Overlay — left dark for legibility, right more transparent */}
       <div
         className="absolute inset-0"
         style={{ background: "linear-gradient(105deg, rgba(10,6,20,0.82) 0%, rgba(10,6,20,0.55) 45%, rgba(10,6,20,0.12) 100%)" }}
@@ -60,7 +58,7 @@ export function EtcHero() {
             transition={{ duration: 2, delay: 0.8 }}
             className="flex items-center gap-3 mb-8"
           >
-            <div className="w-1.5 h-1.5 rounded-full bg-[#C1D736]" />
+            <div className="w-1.5 h-1.5 rounded-full bg-[#CCFF00]" />
             <span className="text-white/70 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>CREATIVE DESIGN AGENCY — EST. BANGALORE</span>
           </motion.div>
 
@@ -70,7 +68,7 @@ export function EtcHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.4, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="leading-[0.82] tracking-tighter select-none text-white"
-              style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(6rem, 18vw, 14rem)", fontWeight: 700, lineHeight: 0.85 }}
+              style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(6rem, 18vw, 14rem)", fontWeight: 800, lineHeight: 0.85 }}
             >
               etc.
             </motion.h1>
@@ -82,7 +80,7 @@ export function EtcHero() {
             transition={{ duration: 0.1, delay: 0.9 }}
             className="mb-10 flex items-end gap-6 flex-wrap"
           >
-            <h2 className="text-white leading-tight" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.4rem, 3.5vw, 2.8rem)", fontWeight: 700, letterSpacing: "-0.02em" }}>
+            <h2 className="text-white leading-tight" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.4rem, 3.5vw, 2.8rem)", fontWeight: 700, letterSpacing: "-0.02em" }}>
               <TextReveal text="We can't list it all." delay={0.9} />
             </h2>
             <p className="text-white/55 text-sm leading-relaxed max-w-xs mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 300 }}>
@@ -96,7 +94,7 @@ export function EtcHero() {
             transition={{ duration: 1, delay: 1.4 }}
             className="flex items-center gap-4"
           >
-            <div className="w-2 h-2 rounded-full bg-[#C1D736] flex-shrink-0" />
+            <div className="w-2 h-2 rounded-full bg-[#CCFF00] flex-shrink-0" />
             <div className="relative h-6 overflow-hidden w-52">
               <AnimatePresence mode="wait">
                 <motion.p
@@ -116,7 +114,7 @@ export function EtcHero() {
         </div>
       </div>
 
-      {/* Bottom marquee — solid, no blur */}
+      {/* Marquee */}
       <div className="relative z-20 border-t border-white/10 overflow-hidden" style={{ backgroundColor: "rgba(10,6,20,0.85)" }}>
         <motion.div
           className="flex whitespace-nowrap py-3"
