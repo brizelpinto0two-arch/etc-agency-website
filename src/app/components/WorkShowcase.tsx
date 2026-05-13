@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { grain } from "./brandGradients";
 
 import missingPiecePackaging from "@/imports/etc-work/img-028.jpg";
 import spiceBasket from "@/imports/etc-work/img-060.jpg";
@@ -15,12 +14,9 @@ const featured = [
 
 export function WorkShowcase() {
   return (
-    <section id="work" className="relative w-full bg-[#050505] py-24 px-8 md:px-16 lg:px-20 overflow-hidden">
+    <section id="work" className="relative w-full bg-[#F8EFD2] py-24 px-8 md:px-16 lg:px-20 overflow-hidden">
 
-      {/* Grain */}
-      <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none" style={{ backgroundImage: grain }} />
-
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto">
 
         {/* Header */}
         <motion.div
@@ -31,16 +27,16 @@ export function WorkShowcase() {
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#CCFF00]" />
-            <span className="text-white/50 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>SELECTED WORK</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-[#C1D736]" />
+            <span className="text-[#4F4169]/50 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>SELECTED WORK</span>
           </div>
           <h2
-            className="text-white leading-[0.85] tracking-tighter"
+            className="text-[#4F4169] leading-[0.85] tracking-tighter"
             style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(3.5rem, 8vw, 7rem)", fontWeight: 700, letterSpacing: "-0.03em" }}
           >
             WHAT WE'VE
             <br />
-            <span className="text-white/30">MADE.</span>
+            <span className="text-[#4F4169]/30">MADE.</span>
           </h2>
         </motion.div>
 
@@ -66,8 +62,6 @@ export function WorkShowcase() {
               <p className="text-white/50 text-[0.55rem] tracking-[0.2em] uppercase mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{featured[0].service}</p>
               <p className="text-white font-semibold tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1rem, 1.8vw, 1.4rem)" }}>{featured[0].client}</p>
             </div>
-            {/* Grain on image */}
-            <div className="absolute inset-0 mix-blend-overlay opacity-20 pointer-events-none" style={{ backgroundImage: grain }} />
           </motion.div>
 
           {/* Right column — 3 images stacked */}
@@ -93,7 +87,6 @@ export function WorkShowcase() {
                 <p className="text-white/50 text-[0.5rem] tracking-[0.2em] uppercase mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{featured[1].service}</p>
                 <p className="text-white font-semibold text-sm tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{featured[1].client}</p>
               </div>
-              <div className="absolute inset-0 mix-blend-overlay opacity-20 pointer-events-none" style={{ backgroundImage: grain }} />
             </motion.div>
 
             {/* Bottom two — side by side */}
@@ -117,7 +110,6 @@ export function WorkShowcase() {
                     <p className="text-white/45 text-[0.45rem] tracking-[0.2em] uppercase mb-0.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{item.service}</p>
                     <p className="text-white font-semibold text-xs tracking-tight leading-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{item.client}</p>
                   </div>
-                  <div className="absolute inset-0 mix-blend-overlay opacity-20 pointer-events-none" style={{ backgroundImage: grain }} />
                 </motion.div>
               ))}
             </div>
@@ -131,12 +123,12 @@ export function WorkShowcase() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 1.5 }}
-          className="flex items-center justify-between mt-10 pt-8 border-t border-white/8"
+          className="flex items-center justify-between mt-10 pt-8 border-t border-[#4F4169]/15"
         >
-          <p className="text-white/25 text-[0.55rem] tracking-[0.22em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <p className="text-[#4F4169]/30 text-[0.55rem] tracking-[0.22em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             04 FEATURED PROJECTS — ETC.™
           </p>
-          <p className="text-white/20 text-[0.55rem] tracking-[0.22em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <p className="text-[#4F4169]/20 text-[0.55rem] tracking-[0.22em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             BANGALORE, IN — 2025
           </p>
         </motion.div>

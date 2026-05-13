@@ -13,11 +13,11 @@ const ShowreelSection = lazy(() =>
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white overflow-x-hidden relative">
+    <div className="min-h-screen bg-[#F8EFD2] text-[#4F4169] overflow-x-hidden relative">
       <LiquifyCursor />
       <EtcHero />
       <WorkShowcase />
-      <Suspense fallback={<div className="h-[60vh] bg-[#030303]" />}>
+      <Suspense fallback={<div className="h-[60vh] bg-[#4F4169]" />}>
         <ShowreelSection />
       </Suspense>
       <ServicesSection />

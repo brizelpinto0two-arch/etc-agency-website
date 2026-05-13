@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { grain } from "./brandGradients";
 
 const raw = import.meta.glob("../../imports/etc-work/img-*.jpg", { eager: true }) as Record<string, { default: string }>;
 
@@ -8,7 +7,6 @@ const allImages: string[] = Object.entries(raw)
   .map(([, mod]) => mod.default)
   .slice(1); // skip img-000
 
-// Distribute images across rows and assign a width class to each card
 type CardSize = "wide" | "portrait" | "square" | "hero";
 
 const sizes: CardSize[] = ["wide", "square", "hero", "portrait", "square", "wide", "portrait", "hero", "square", "wide"];
@@ -57,22 +55,13 @@ function CinemaRow({ images, reverse = false, duration = 80, height = 420, sizeO
               className="relative flex-shrink-0 overflow-hidden rounded-2xl group"
               style={{ width: w, height }}
             >
-              {/* Full-bleed cover image */}
               <img
                 src={src}
                 alt=""
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-
-              {/* Subtle vignette on hover */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500 pointer-events-none" />
-
-              {/* Grain overlay */}
-              <div
-                className="absolute inset-0 mix-blend-overlay opacity-20 pointer-events-none"
-                style={{ backgroundImage: grain }}
-              />
             </div>
           );
         })}
@@ -83,18 +72,7 @@ function CinemaRow({ images, reverse = false, duration = 80, height = 420, sizeO
 
 export function ShowreelSection() {
   return (
-    <section className="relative w-full bg-[#030303] border-t border-white/5 overflow-hidden">
-
-      {/* Global grain */}
-      <div className="absolute inset-0 opacity-35 mix-blend-overlay pointer-events-none z-10" style={{ backgroundImage: grain }} />
-
-      {/* Bloom */}
-      <motion.div
-        className="absolute w-[1000px] h-[1000px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(64,64,255,0.07) 0%, transparent 70%)", filter: "blur(150px)", left: "20%", top: "5%" }}
-        animate={{ opacity: [0.07, 0.13, 0.07], scale: [1, 1.1, 1] }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-      />
+    <section className="relative w-full bg-[#4F4169] border-t border-white/5 overflow-hidden">
 
       {/* ── HEADER ── */}
       <div className="relative z-20 px-8 md:px-16 lg:px-20 pt-28 pb-12 max-w-7xl mx-auto">
@@ -105,7 +83,7 @@ export function ShowreelSection() {
           transition={{ duration: 2 }}
           className="flex items-center gap-3 mb-8"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-[#4040FF]" />
+          <div className="w-1.5 h-1.5 rounded-full bg-[#C1D736]" />
           <span className="text-white/50 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             ETC. ARCHIVE — FULL CATALOGUE
           </span>
@@ -139,15 +117,15 @@ export function ShowreelSection() {
         </div>
       </div>
 
-      {/* ── CINEMA ROWS — 2 rows, cinematic heights ── */}
+      {/* ── CINEMA ROWS ── */}
       <div className="relative z-20 space-y-3 pb-3">
         <CinemaRow images={row1} reverse={false} duration={100} height={440} sizeOffset={0} />
         <CinemaRow images={row2} reverse={true}  duration={120} height={380} sizeOffset={3} />
       </div>
 
-      {/* Top + bottom vignette */}
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#030303] to-transparent z-30 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#030303] to-transparent z-30 pointer-events-none" />
+      {/* Top + bottom vignette — uses #4F4169 */}
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#4F4169] to-transparent z-30 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#4F4169] to-transparent z-30 pointer-events-none" />
 
       {/* Footer row */}
       <div className="relative z-20 px-8 md:px-16 lg:px-20 pb-20 pt-10 max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap">

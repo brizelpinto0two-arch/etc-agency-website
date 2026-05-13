@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
 import { MagneticButton } from "./MagneticButton";
 import { TextReveal } from "./TextReveal";
-import { grain } from "./brandGradients";
 import heroBg from "@/imports/hero-bg.png";
 
 const services = ["Brand Identity", "Art Direction", "Social & Digital", "Motion Graphics", "Packaging", "Strategy"];
@@ -16,7 +15,7 @@ export function EtcHero() {
   }, []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden flex flex-col justify-between" style={{ backgroundColor: "#ede8f5" }}>
+    <section className="relative h-screen w-full overflow-hidden flex flex-col justify-between" style={{ backgroundColor: "#0a0614" }}>
 
       {/* Full-screen background image */}
       <img
@@ -26,14 +25,11 @@ export function EtcHero() {
         style={{ objectPosition: "center 40%" }}
       />
 
-      {/* Gradient overlay — darker on left for text legibility, transparent on right */}
+      {/* Overlay — left dark for legibility, right more transparent */}
       <div
         className="absolute inset-0"
-        style={{ background: "linear-gradient(105deg, rgba(10,6,20,0.72) 0%, rgba(10,6,20,0.45) 45%, rgba(10,6,20,0.05) 100%)" }}
+        style={{ background: "linear-gradient(105deg, rgba(10,6,20,0.82) 0%, rgba(10,6,20,0.55) 45%, rgba(10,6,20,0.12) 100%)" }}
       />
-
-      {/* Grain */}
-      <div className="absolute inset-0 opacity-25 mix-blend-overlay pointer-events-none z-10" style={{ backgroundImage: grain }} />
 
       {/* Nav */}
       <motion.nav
@@ -42,7 +38,7 @@ export function EtcHero() {
         transition={{ duration: 1, delay: 0.2 }}
         className="relative z-20 flex items-center justify-between px-8 md:px-16 lg:px-20 pt-8"
       >
-        <p className="text-white text-[0.65rem] tracking-[0.3em] uppercase opacity-80" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500 }}>etc.™</p>
+        <p className="text-white text-[0.65rem] tracking-[0.3em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500 }}>etc.™</p>
         <div className="flex items-center gap-8">
           {["Work", "About", "Contact"].map((item) => (
             <MagneticButton key={item} as="a" href={`#${item.toLowerCase()}`}>
@@ -60,11 +56,11 @@ export function EtcHero() {
 
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.7 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 2, delay: 0.8 }}
             className="flex items-center gap-3 mb-8"
           >
-            <div className="w-1.5 h-1.5 rounded-full bg-[#CCFF00]" />
+            <div className="w-1.5 h-1.5 rounded-full bg-[#C1D736]" />
             <span className="text-white/70 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>CREATIVE DESIGN AGENCY — EST. BANGALORE</span>
           </motion.div>
 
@@ -100,7 +96,7 @@ export function EtcHero() {
             transition={{ duration: 1, delay: 1.4 }}
             className="flex items-center gap-4"
           >
-            <div className="w-2 h-2 rounded-full bg-[#CCFF00] flex-shrink-0" />
+            <div className="w-2 h-2 rounded-full bg-[#C1D736] flex-shrink-0" />
             <div className="relative h-6 overflow-hidden w-52">
               <AnimatePresence mode="wait">
                 <motion.p
@@ -120,8 +116,8 @@ export function EtcHero() {
         </div>
       </div>
 
-      {/* Bottom marquee */}
-      <div className="relative z-20 border-t border-white/10 overflow-hidden" style={{ backgroundColor: "rgba(10,6,20,0.3)", backdropFilter: "blur(8px)" }}>
+      {/* Bottom marquee — solid, no blur */}
+      <div className="relative z-20 border-t border-white/10 overflow-hidden" style={{ backgroundColor: "rgba(10,6,20,0.85)" }}>
         <motion.div
           className="flex whitespace-nowrap py-3"
           animate={{ x: [0, -1200] }}
