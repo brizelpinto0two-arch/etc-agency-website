@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
 import { TextReveal } from "./TextReveal";
-import heroBg from "@/imports/hero-bg.png";
+import heroVideo from "@/imports/hero-video.mp4";
 
 const services = ["Brand Identity", "Art Direction", "Social & Digital", "Motion Graphics", "Packaging", "Strategy"];
 
@@ -16,10 +16,13 @@ export function EtcHero() {
   return (
     <section className="relative h-screen w-full overflow-hidden flex flex-col">
 
-      {/* Full-screen background image */}
-      <img
-        src={heroBg}
-        alt=""
+      {/* Full-screen background video */}
+      <video
+        src={heroVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
         className="absolute inset-0 w-full h-full object-cover"
         style={{ objectPosition: "center center" }}
       />
