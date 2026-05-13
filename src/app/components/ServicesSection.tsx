@@ -13,19 +13,21 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="relative min-h-screen w-full bg-[#F9F8F5] py-32 px-8 md:px-16 lg:px-20 border-t border-[#4F4169]/10">
-
+    <section
+      className="relative min-h-screen w-full py-32 px-8 md:px-16 lg:px-20"
+      style={{ background: "linear-gradient(160deg, #2a1550 0%, #4a2878 35%, #9060c0 65%, #d8b8f0 85%, #f0e8ff 100%)" }}
+    >
       <div className="relative z-10 max-w-5xl">
 
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.5 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 2, delay: 0.3 }}
+          transition={{ duration: 1.5, delay: 0.3 }}
           className="flex items-center gap-3 mb-8"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-[#3E7438]" />
-          <span className="text-[#4F4169]/50 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>WHAT WE DO</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-[#CCFF00]" style={{ boxShadow: "0 0 6px #CCFF00" }} />
+          <span className="text-white/50 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>WHAT WE DO</span>
         </motion.div>
 
         <motion.h2
@@ -33,7 +35,7 @@ export function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5 }}
-          className="text-[#4F4169] leading-[0.9] mb-16"
+          className="text-white leading-[0.9] mb-16"
           style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(3rem, 7vw, 5.5rem)", fontWeight: 800, letterSpacing: "-0.02em" }}
         >
           We make people feel
@@ -41,7 +43,7 @@ export function ServicesSection() {
           <span className="italic">something</span> when they see you.
         </motion.h2>
 
-        <div className="divide-y divide-[#4F4169]/12">
+        <div className="divide-y divide-white/12">
           {services.map((s, i) => (
             <motion.div
               key={s.num}
@@ -51,15 +53,15 @@ export function ServicesSection() {
               transition={{ duration: 1, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="group flex items-center gap-8 py-7 cursor-default"
             >
-              <span className="text-[#4F4169]/25 text-[0.6rem] tracking-[0.2em] w-6 flex-shrink-0" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{s.num}</span>
+              <span className="text-white/25 text-[0.6rem] tracking-[0.2em] w-6 flex-shrink-0" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{s.num}</span>
               <div className="flex-1 flex items-baseline justify-between gap-12">
                 <h3
-                  className="text-[#4F4169]/75 group-hover:text-[#4F4169] transition-colors duration-300 flex-shrink-0"
+                  className="text-white/75 group-hover:text-white transition-colors duration-300 flex-shrink-0"
                   style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.1rem, 2vw, 1.5rem)", fontWeight: 600 }}
                 >
                   {s.name}
                 </h3>
-                <p className="text-[#4F4169]/35 group-hover:text-[#4F4169]/60 text-xs leading-relaxed text-right max-w-[280px] transition-colors duration-300 hidden md:block" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                <p className="text-white/30 group-hover:text-white/55 text-xs leading-relaxed text-right max-w-[280px] transition-colors duration-300 hidden md:block" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   {s.desc}
                 </p>
               </div>
@@ -73,7 +75,7 @@ export function ServicesSection() {
           whileInView={{ opacity: 0.3 }}
           viewport={{ once: true }}
           transition={{ duration: 2, delay: 0.5 }}
-          className="text-center mt-20 text-[#4F4169]/30 text-[0.6rem] tracking-[0.2em] uppercase"
+          className="text-center mt-20 text-white/30 text-[0.6rem] tracking-[0.2em] uppercase"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
           WE MAKE BRANDS MAKE SENSE — ETC.™

@@ -13,11 +13,11 @@ const ShowreelSection = lazy(() =>
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#F8EFD2] text-[#4F4169] overflow-x-hidden relative">
+    <div className="min-h-screen overflow-x-hidden relative" style={{ background: "linear-gradient(180deg, #d8c8f0 0%, #ede4f8 15%, #f5eeff 30%)" }}>
       <LiquifyCursor />
       <EtcHero />
       <WorkShowcase />
-      <Suspense fallback={<div className="h-[60vh] bg-[#4F4169]" />}>
+      <Suspense fallback={<div className="h-[60vh]" style={{ background: "linear-gradient(150deg, #5a3080 0%, #3d1f65 100%)" }} />}>
         <ShowreelSection />
       </Suspense>
       <ServicesSection />

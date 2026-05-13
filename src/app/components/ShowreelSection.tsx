@@ -61,14 +61,17 @@ function CinemaRow({ images, reverse = false, duration = 80, height = 420, sizeO
 
 export function ShowreelSection() {
   return (
-    <section className="relative w-full bg-[#4F4169] border-t border-white/5 overflow-hidden">
-
+    <section
+      className="relative w-full overflow-hidden"
+      style={{ background: "linear-gradient(160deg, #e8d8ff 0%, #c4a8e8 25%, #7040a8 55%, #3d1f65 80%, #2a1550 100%)" }}
+    >
+      {/* Header */}
       <div className="relative z-20 px-8 md:px-16 lg:px-20 pt-28 pb-12 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.5 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 1.5 }}
           className="flex items-center gap-3 mb-8"
         >
           <div className="w-1.5 h-1.5 rounded-full bg-[#CCFF00]" style={{ boxShadow: "0 0 6px #CCFF00" }} />
@@ -103,14 +106,17 @@ export function ShowreelSection() {
         </div>
       </div>
 
+      {/* Rows */}
       <div className="relative z-20 space-y-3 pb-3">
         <CinemaRow images={row1} reverse={false} duration={100} height={440} sizeOffset={0} />
         <CinemaRow images={row2} reverse={true}  duration={120} height={380} sizeOffset={3} />
       </div>
 
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#4F4169] to-transparent z-30 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#4F4169] to-transparent z-30 pointer-events-none" />
+      {/* Vignettes that match the gradient endpoints */}
+      <div className="absolute inset-x-0 top-0 h-24 pointer-events-none z-30" style={{ background: "linear-gradient(to bottom, #e8d8ff, transparent)" }} />
+      <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-30" style={{ background: "linear-gradient(to top, #2a1550, transparent)" }} />
 
+      {/* Footer */}
       <div className="relative z-20 px-8 md:px-16 lg:px-20 pb-20 pt-10 max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap">
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 0.25 }} viewport={{ once: true }} className="text-white/25 text-[0.6rem] tracking-[0.25em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
           ETCETERA — EVERYTHING WE'VE MADE. AND MORE.
